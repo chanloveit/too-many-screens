@@ -7,6 +7,6 @@ use multiple screens in one page, not tabs.
 -localstorage  
 
 ## Built With
--Next.js
--TypeScript
--TailwindCSS
+-Next.js  
+-TypeScript  
+-TailwindCSS  
