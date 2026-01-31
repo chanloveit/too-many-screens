@@ -12,7 +12,7 @@ type ScreenType = {
 }
 
 export default function Home(){
-	const [screens, setScreens] = useState<string[]>([]);
+	const [screens, setScreens] = useState<ScreenType[]>([]);
 	const [inputUrl, setInputUrl] = useState('');
 	
 	useEffect(() => {
