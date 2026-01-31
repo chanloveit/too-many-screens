@@ -3,17 +3,40 @@ import { Rnd } from 'react-rnd';
 import { useState } from 'react';
 import { X } from 'lucide-react';
 
-export function Screen({ url, onClose }: {url: string, onClose: () => void}) {
+type ScreenType = {
+	id: string;
+	url: string;
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+};
+
+type ScreenProps = {
+	screen: ScreenType;
+	onClose: () => void;
+	onUpdate: (updates: Partial<ScreenType>) => void;
+};
+
+
+export function Screen({ screen, onClose, onUpdate }: ScreenProps) {
 	const [isDragging, setIsDragging] = useState(false);
 	
 	return(
-		<Rnd default = {{x: 0, y: 0, width: 320, height: 200}} 
+		<Rnd default = {{x: screen.x, y: screen.y, width: screen.width, height: screen.height}} 
 			minWidth = {320} 
 			minHeight = {200} 
 			className = 'border overflow-hidden' 
 			dragHandleClassName = 'drag-handle'
 			onDragStart = {() => setIsDragging(true)}
-      onDragStop = {() => setIsDragging(false)}
+      onDragStop = {(e, d) => {setIsDragging(false); onUpdate({x: d.x, y: d.y});}}
+			onResizeStop = {(e, direction, ref, delta, position) => {
+				onUpdate({width: parseInt(ref.style.width),
+								height: parseInt(ref.style.height),
+								x: position.x,
+								y: position.y
+								 });
+			}}
 			cancel = '.cancel_drag'>
 
 			{isDragging && (
@@ -26,7 +49,7 @@ export function Screen({ url, onClose }: {url: string, onClose: () => void}) {
 														onClose();
 														}} />
 			</div>
-			<iframe src = {url} className = 'w-full h-full' title = 'screen'/>
+			<iframe src = {screen.url} className = 'w-full h-full' title = 'screen'/>
 		</Rnd>	
 	)
 }

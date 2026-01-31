@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Too Many Tabs",
+  title: "Too Many Screens",
   description: "mult screen view in one web page",
 };
 
