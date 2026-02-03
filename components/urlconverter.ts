@@ -10,7 +10,7 @@ export function convertToEmbedUrl(url: string): string{
 		}
 
 		if(urlObj.hostname.includes('youtu.be')){
-			const videoId = urlObh.pathname.slice(1);
+			const videoId = urlObj.pathname.slice(1);
 			return `https://www.youtube.com/embed/${videoId}`;
 		}
 
