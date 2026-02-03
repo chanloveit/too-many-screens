@@ -28,9 +28,15 @@ export default function Home(){
 	
 	const addScreen = () => {
 		if(inputUrl.trim()){
+			let processedUrl: string = inputUrl;
+
+			if(!processedUrl.startsWith('http')){
+				processedUrl = 'https://' + processedUrl;
+			}
+			
 			const newScreen: ScreenType ={
 				id: Date.now().toString(),
-				url: inputUrl,
+				url: processedUrl,
 				x: Math.random() * (window.innerWidth - 400),
 				y: Math.random() * (window.innerHeight - 300),
 				width: 400,
