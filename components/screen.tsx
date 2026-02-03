@@ -2,6 +2,7 @@
 import { Rnd } from 'react-rnd';
 import { useState } from 'react';
 import { X } from 'lucide-react';
+import { convertToEmbedUrl } from '@/components/urlconverter';
 
 type ScreenType = {
 	id: string;
@@ -21,7 +22,8 @@ type ScreenProps = {
 
 export function Screen({ screen, onClose, onUpdate }: ScreenProps) {
 	const [isDragging, setIsDragging] = useState(false);
-	
+	const embedUrl = convertToEmbedUrl(screen.url); 
+		
 	return(
 		<Rnd default = {{x: screen.x, y: screen.y, width: screen.width, height: screen.height}} 
 			minWidth = {320} 
@@ -49,7 +51,7 @@ export function Screen({ screen, onClose, onUpdate }: ScreenProps) {
 														onClose();
 														}} />
 			</div>
-			<iframe src = {screen.url} className = 'w-full h-full' title = 'screen'/>
+			<iframe src = {embedUrl} className = 'w-full h-full' title = 'screen'/>
 		</Rnd>	
 	)
 }
