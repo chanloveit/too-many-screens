@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Too Many Screens",
   description: "mult screen view in one web page",
+	verification: {
+		google: "oqZPgdu6nMgI0e9z8qvbM2gdq9ZM9owap03ZwIfysTk"
+	}
 };
 
 export default function RootLayout({
